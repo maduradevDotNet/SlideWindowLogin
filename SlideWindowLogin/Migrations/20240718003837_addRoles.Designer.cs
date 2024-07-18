@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SlideWindowLogin.Data;
 
@@ -11,9 +12,11 @@ using SlideWindowLogin.Data;
 namespace SlideWindowLogin.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240718003837_addRoles")]
+    partial class addRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,26 +50,6 @@ namespace SlideWindowLogin.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "e5905168-31b9-4913-983f-8a53c3a96617",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        },
-                        new
-                        {
-                            Id = "1533d623-c76f-4f2d-b27b-ebbe7f59be71",
-                            Name = "client",
-                            NormalizedName = "client"
-                        },
-                        new
-                        {
-                            Id = "e3fcd55e-4b0f-4b54-8b65-886ed0476bc8",
-                            Name = "seller",
-                            NormalizedName = "seller"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -92,6 +75,99 @@ namespace SlideWindowLogin.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6d2a8097-1b25-4064-8705-0e28d8c72200",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "41bf49a5-e04a-4c73-a6af-0d62f19e2220",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "admin",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "66a7c064-a1f4-477f-b4db-204b3611cf00",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "754f26f5-e267-4cf5-9649-bac4350bebfb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d6ebc316-0293-4d15-9be6-eafd8fadd48f",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "client",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a8e2734a-4b0c-4b5d-af98-f1a222f65e2b",
+                            TwoFactorEnabled = false,
+                            UserName = "client"
+                        },
+                        new
+                        {
+                            Id = "02012eb1-24b2-42cb-aa38-2aa21636a31a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b5fb5334-6dba-42c5-ab45-ba328f246f13",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "seller",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ebe3dac3-5765-416b-a921-c00fc0cbeca8",
+                            TwoFactorEnabled = false,
+                            UserName = "seller"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
